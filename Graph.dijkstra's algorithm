@@ -1,0 +1,301 @@
+package path;
+
+import java.util.PriorityQueue;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+class Vertex implements Comparable<Vertex>
+{
+    public final String name;
+    public Edge[] adjacencies;
+    public double minDistance = Double.POSITIVE_INFINITY;
+    public Vertex previous;
+    public Vertex(String argName) { name = argName; }
+    public String toString() { return name; }
+    public int compareTo(Vertex other)
+    {
+        return Double.compare(minDistance, other.minDistance);
+    }
+
+}
+
+
+class Edge
+{
+    public final Vertex target;
+    public final double weight;
+    public Edge(Vertex argTarget, double argWeight)
+    { target = argTarget; weight = argWeight; }
+}
+
+public class GraphStructure
+{
+    public HashMap<String,Vertex> nodes = new HashMap<String, Vertex>();
+    
+    public static void computePaths(Vertex source)
+    {
+        source.minDistance = 0.;
+        PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
+    vertexQueue.add(source);
+
+    while (!vertexQueue.isEmpty()) {
+        Vertex u = vertexQueue.poll();
+
+            // Visit each edge exiting u
+            for (Edge e : u.adjacencies)
+            {
+                Vertex v = e.target;
+                double weight = e.weight;
+                double distanceThroughU = u.minDistance + weight;
+        if (distanceThroughU < v.minDistance) {
+            vertexQueue.remove(v);
+
+            v.minDistance = distanceThroughU ;
+            v.previous = u;
+            vertexQueue.add(v);
+        }
+            }
+        }
+    }
+
+    public static List<Vertex> getShortestPathTo(Vertex target)
+    {
+        List<Vertex> path = new ArrayList<Vertex>();
+        for (Vertex vertex = target; vertex != null; vertex = vertex.previous)
+            path.add(vertex);
+
+        Collections.reverse(path);
+        return path;
+    }
+    
+    public void IniatePathNodes(){
+        
+        // mark all the vertices 
+        Vertex A1 = new Vertex("1");
+        Vertex A2 = new Vertex("2");
+        Vertex A3 = new Vertex("3");
+        Vertex A4 = new Vertex("4");
+        Vertex A5 = new Vertex("5");
+        Vertex A6 = new Vertex("6");
+        Vertex A7 = new Vertex("7");
+        Vertex A8 = new Vertex("8");
+        Vertex A9 = new Vertex("9");
+        Vertex A10 = new Vertex("10");
+        Vertex A11 = new Vertex("11");
+        Vertex A12 = new Vertex("12");
+        Vertex A13 = new Vertex("13");
+        Vertex A14 = new Vertex("14");
+        Vertex A15 = new Vertex("15");
+        Vertex A16 = new Vertex("16");
+        Vertex A17 = new Vertex("17");
+        Vertex A18 = new Vertex("18");
+        Vertex A19 = new Vertex("19");
+        Vertex A20 = new Vertex("20");
+        Vertex A21 = new Vertex("21");
+        Vertex A22 = new Vertex("22");
+        Vertex A23 = new Vertex("23");
+        Vertex A24 = new Vertex("24");
+        Vertex A25 = new Vertex("25");
+        Vertex A26 = new Vertex("26");
+        Vertex A27 = new Vertex("27");
+        Vertex A28 = new Vertex("28");
+        Vertex A29 = new Vertex("29");
+        Vertex A30 = new Vertex("30");
+        Vertex A31 = new Vertex("31");
+        Vertex A32 = new Vertex("32");
+        
+
+        // set the edges and weight
+        A1.adjacencies = new Edge[]{ new Edge(A2, 135)};
+        A2.adjacencies = new Edge[]{ new Edge(A1, 135),new Edge(A3, 120),new Edge(A13, 315)};
+        A3.adjacencies = new Edge[]{ new Edge(A2, 120),new Edge(A4, 145),new Edge(A15, 60),new Edge(A27, 55) };
+        A4.adjacencies = new Edge[]{ new Edge(A3, 145),new Edge(A5, 147),new Edge(A16, 60),new Edge(A28, 55) };
+        A5.adjacencies = new Edge[]{ new Edge(A4, 147),new Edge(A6, 146),new Edge(A17, 60),new Edge(A29, 55) };
+        A6.adjacencies = new Edge[]{ new Edge(A5, 146),new Edge(A7, 88),new Edge(A18, 60),new Edge(A19, 81) };
+        
+        A7.adjacencies = new Edge[]{ new Edge(A6, 88),new Edge(A8, 139),new Edge(A20, 81) };
+        A8.adjacencies = new Edge[]{ new Edge(A7, 139),new Edge(A9, 88),new Edge(A21, 81), };
+        A9.adjacencies = new Edge[]{ new Edge(A8, 88),new Edge(A10, 146),new Edge(A22, 81),new Edge(A23, 57) };
+        A10.adjacencies = new Edge[]{ new Edge(A9, 146),new Edge(A11, 147),new Edge(A24, 57),new Edge(A30, 55) };
+        A11.adjacencies = new Edge[]{ new Edge(A10, 147),new Edge(A12, 145),new Edge(A25, 57),new Edge(A31, 55) };
+        A12.adjacencies = new Edge[]{ new Edge(A11, 145),new Edge(A13, 120),new Edge(A26, 57),new Edge(A32, 55) };
+        A13.adjacencies = new Edge[]{ new Edge(A12, 120),new Edge(A14, 128),new Edge(A2, 315), };
+        A14.adjacencies = new Edge[]{ new Edge(A13, 128)};
+        A15.adjacencies = new Edge[]{ new Edge(A3, 60)};
+        A16.adjacencies = new Edge[]{ new Edge(A4, 60)};
+        A17.adjacencies = new Edge[]{ new Edge(A5, 60)};
+        A18.adjacencies = new Edge[]{ new Edge(A6, 60)};
+        A19.adjacencies = new Edge[]{ new Edge(A6, 81)};
+        A20.adjacencies = new Edge[]{ new Edge(A7, 81)};
+        A21.adjacencies = new Edge[]{ new Edge(A8, 81)};
+        A22.adjacencies = new Edge[]{ new Edge(A9, 81)};
+        A23.adjacencies = new Edge[]{ new Edge(A9, 57)};
+        A24.adjacencies = new Edge[]{ new Edge(A10, 57)};
+        A25.adjacencies = new Edge[]{ new Edge(A11, 57)};
+        A26.adjacencies = new Edge[]{ new Edge(A12, 57)}; 
+        A27.adjacencies = new Edge[]{ new Edge(A3, 55)};
+        A28.adjacencies = new Edge[]{ new Edge(A4, 55)};
+        A29.adjacencies = new Edge[]{ new Edge(A5, 55)};
+        A30.adjacencies = new Edge[]{ new Edge(A10, 55)};
+        A31.adjacencies = new Edge[]{ new Edge(A11, 55)};
+        A32.adjacencies = new Edge[]{ new Edge(A12, 55)};
+        
+        nodes.put("1", A1);
+        nodes.put("2", A2);
+        nodes.put("3", A3);
+        nodes.put("4", A4);
+        nodes.put("5", A5);
+        nodes.put("6", A6);
+        nodes.put("7", A7);
+        nodes.put("8", A8);
+        nodes.put("9", A9);
+        nodes.put("10", A10);
+        nodes.put("11", A11);
+        nodes.put("12", A12);
+        nodes.put("13", A13);
+        nodes.put("14", A14);
+        nodes.put("15", A15);
+        nodes.put("16", A16);
+        nodes.put("17", A17);
+        nodes.put("18", A18);
+        nodes.put("19", A19);
+        nodes.put("20", A20);
+        nodes.put("21", A21);
+        nodes.put("22", A22);
+        nodes.put("23", A23);
+        nodes.put("24", A24);
+        nodes.put("25", A25);
+        nodes.put("26", A26);
+        nodes.put("27", A27);
+        nodes.put("28", A28);
+        nodes.put("29", A29);
+        nodes.put("30", A30);
+        nodes.put("31", A31);
+        nodes.put("32", A32);
+        
+    }
+    /*
+    *param Start Node and End Node
+    *Get the Path Nodes
+    */
+    public String PathBetween(String node1, String node2){
+        
+        Vertex v1 = nodes.get(node1);
+        Vertex v2 = nodes.get(node2);
+        
+        double dis = getDistance(v1, v2);
+        List<Vertex> pathNodes = getPath(v2);
+        
+        String path = "";
+        
+        for (int i = 0; i < pathNodes.size(); i++) {
+            
+            path += pathNodes.get(i).toString() + ",";
+        }
+        
+        path += dis;
+        
+        return path;
+    }
+
+    public static void main(String[] args)
+    {
+//        // mark all the vertices 
+//        Vertex A1 = new Vertex("1");
+//        Vertex A2 = new Vertex("2");
+//        Vertex A3 = new Vertex("3");
+//        Vertex A4 = new Vertex("4");
+//        Vertex A5 = new Vertex("5");
+//        Vertex A6 = new Vertex("6");
+//        Vertex A7 = new Vertex("7");
+//        Vertex A8 = new Vertex("8");
+//        Vertex A9 = new Vertex("9");
+//        Vertex A10 = new Vertex("10");
+//        Vertex A11 = new Vertex("11");
+//        Vertex A12 = new Vertex("12");
+//        Vertex A13 = new Vertex("13");
+//        Vertex A14 = new Vertex("14");
+//        Vertex A15 = new Vertex("15");
+//        Vertex A16 = new Vertex("16");
+//        Vertex A17 = new Vertex("17");
+//        Vertex A18 = new Vertex("18");
+//        Vertex A19 = new Vertex("19");
+//        Vertex A20 = new Vertex("20");
+//        Vertex A21 = new Vertex("21");
+//        Vertex A22 = new Vertex("22");
+//        Vertex A23 = new Vertex("23");
+//        Vertex A24 = new Vertex("24");
+//        Vertex A25 = new Vertex("25");
+//        Vertex A26 = new Vertex("26");
+//        Vertex A27 = new Vertex("27");
+//        Vertex A28 = new Vertex("28");
+//        Vertex A29 = new Vertex("29");
+//        Vertex A30 = new Vertex("30");
+//        Vertex A31 = new Vertex("31");
+//        Vertex A32 = new Vertex("32");
+//        
+//
+//        // set the edges and weight
+//        A1.adjacencies = new Edge[]{ new Edge(A2, 135)};
+//        A2.adjacencies = new Edge[]{ new Edge(A1, 135),new Edge(A3, 120),new Edge(A13, 315)};
+//        A3.adjacencies = new Edge[]{ new Edge(A2, 120),new Edge(A4, 145),new Edge(A15, 60),new Edge(A27, 55) };
+//        A4.adjacencies = new Edge[]{ new Edge(A3, 145),new Edge(A5, 147),new Edge(A16, 60),new Edge(A28, 55) };
+//        A5.adjacencies = new Edge[]{ new Edge(A4, 147),new Edge(A6, 146),new Edge(A17, 60),new Edge(A29, 55) };
+//        A6.adjacencies = new Edge[]{ new Edge(A5, 146),new Edge(A7, 88),new Edge(A18, 60),new Edge(A19, 81) };
+//        
+//        A7.adjacencies = new Edge[]{ new Edge(A6, 88),new Edge(A8, 139),new Edge(A20, 81) };
+//        A8.adjacencies = new Edge[]{ new Edge(A7, 139),new Edge(A9, 88),new Edge(A21, 81), };
+//        A9.adjacencies = new Edge[]{ new Edge(A8, 88),new Edge(A10, 146),new Edge(A22, 81),new Edge(A23, 57) };
+//        A10.adjacencies = new Edge[]{ new Edge(A9, 146),new Edge(A11, 147),new Edge(A24, 57),new Edge(A30, 55) };
+//        A11.adjacencies = new Edge[]{ new Edge(A10, 147),new Edge(A12, 145),new Edge(A25, 57),new Edge(A31, 55) };
+//        A12.adjacencies = new Edge[]{ new Edge(A11, 145),new Edge(A13, 120),new Edge(A26, 57),new Edge(A32, 55) };
+//        A13.adjacencies = new Edge[]{ new Edge(A12, 120),new Edge(A14, 128),new Edge(A2, 315), };
+//        A14.adjacencies = new Edge[]{ new Edge(A13, 128)};
+//        A15.adjacencies = new Edge[]{ new Edge(A3, 60)};
+//        A16.adjacencies = new Edge[]{ new Edge(A4, 60)};
+//        A17.adjacencies = new Edge[]{ new Edge(A5, 60)};
+//        A18.adjacencies = new Edge[]{ new Edge(A6, 60)};
+//        A19.adjacencies = new Edge[]{ new Edge(A6, 81)};
+//        A20.adjacencies = new Edge[]{ new Edge(A7, 81)};
+//        A21.adjacencies = new Edge[]{ new Edge(A8, 81)};
+//        A22.adjacencies = new Edge[]{ new Edge(A9, 81)};
+//        A23.adjacencies = new Edge[]{ new Edge(A9, 57)};
+//        A24.adjacencies = new Edge[]{ new Edge(A10, 57)};
+//        A25.adjacencies = new Edge[]{ new Edge(A11, 57)};
+//        A26.adjacencies = new Edge[]{ new Edge(A12, 57)}; 
+//        A27.adjacencies = new Edge[]{ new Edge(A3, 55)};
+//        A28.adjacencies = new Edge[]{ new Edge(A4, 55)};
+//        A29.adjacencies = new Edge[]{ new Edge(A5, 55)};
+//        A30.adjacencies = new Edge[]{ new Edge(A10, 55)};
+//        A31.adjacencies = new Edge[]{ new Edge(A11, 55)};
+//        A32.adjacencies = new Edge[]{ new Edge(A12, 55)};
+//
+//
+////        computePaths(F); // run Dijkstra
+////        System.out.println("Distance to " + Z + ": " + Z.minDistance);
+////        List<Vertex> path = getShortestPathTo(Z);
+////        System.out.println("Path: " + path);
+//        
+//        System.out.println(getDistance(A15,A14));
+//        System.out.println(getPath(A14));
+        
+        GraphStructure obj = new GraphStructure();
+        obj.IniatePathNodes();
+        
+        System.out.println("Path :" + obj.PathBetween("1", "15"));
+    }
+    
+    public static double getDistance(Vertex vertex1, Vertex vertex2) {
+    	computePaths(vertex1);    	
+    	return vertex2.minDistance;		
+	}
+    
+    public static List<Vertex> getPath(Vertex vertex) {
+    	return getShortestPathTo(vertex);
+		
+	}
+    
+    
+}
